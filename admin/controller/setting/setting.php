@@ -58,6 +58,9 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_geocode'] = $this->language->get('entry_geocode');
 		$data['entry_email'] = $this->language->get('entry_email');
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
+		$data['entry_vk'] = $this->language->get('entry_vk');
+		$data['entry_fb'] = $this->language->get('entry_fb');
+		$data['entry_instagram'] = $this->language->get('entry_instagram');
 		$data['entry_fax'] = $this->language->get('entry_fax');
 		$data['entry_image'] = $this->language->get('entry_image');
 		$data['entry_open'] = $this->language->get('entry_open');
@@ -271,6 +274,36 @@ class ControllerSettingSetting extends Controller {
 			$data['error_telephone'] = $this->error['telephone'];
 		} else {
 			$data['error_telephone'] = '';
+		}
+		
+		if (isset($this->error['telephone2'])) {
+			$data['error_telephone2'] = $this->error['telephone2'];
+		} else {
+			$data['error_telephone2'] = '';
+		}
+		
+		if (isset($this->error['telephone3'])) {
+			$data['error_telephone3'] = $this->error['telephone3'];
+		} else {
+			$data['error_telephone3'] = '';
+		}
+		
+		if (isset($this->error['vk'])) {
+			$data['error_vk'] = $this->error['vk'];
+		} else {
+			$data['error_vk'] = '';
+		}
+		
+		if (isset($this->error['fb'])) {
+			$data['error_fb'] = $this->error['fb'];
+		} else {
+			$data['error_fb'] = '';
+		}
+		
+		if (isset($this->error['instagram'])) {
+			$data['error_instagram'] = $this->error['instagram'];
+		} else {
+			$data['error_instagram'] = '';
 		}
 
 		if (isset($this->error['meta_title'])) {
@@ -506,6 +539,36 @@ class ControllerSettingSetting extends Controller {
 			$data['config_telephone'] = $this->request->post['config_telephone'];
 		} else {
 			$data['config_telephone'] = $this->config->get('config_telephone');
+		}
+		
+		if (isset($this->request->post['config_telephone2'])) {
+			$data['config_telephone2'] = $this->request->post['config_telephone2'];
+		} else {
+			$data['config_telephone2'] = $this->config->get('config_telephone2');
+		}
+		
+		if (isset($this->request->post['config_telephone3'])) {
+			$data['config_telephone3'] = $this->request->post['config_telephone3'];
+		} else {
+			$data['config_telephone3'] = $this->config->get('config_telephone3');
+		}
+		
+		if (isset($this->request->post['config_vk'])) {
+			$data['config_vk'] = $this->request->post['config_vk'];
+		} else {
+			$data['config_vk'] = $this->config->get('config_vk');
+		}
+		
+		if (isset($this->request->post['config_fb'])) {
+			$data['config_fb'] = $this->request->post['config_fb'];
+		} else {
+			$data['config_fb'] = $this->config->get('config_fb');
+		}
+		
+		if (isset($this->request->post['config_instagram'])) {
+			$data['config_instagram'] = $this->request->post['config_instagram'];
+		} else {
+			$data['config_instagram'] = $this->config->get('config_instagram');
 		}
 
 		if (isset($this->request->post['config_fax'])) {

@@ -1,53 +1,99 @@
 <footer>
   <div class="container">
     <div class="row">
-      <?php if ($informations) { ?>
-      <div class="col-sm-3">
-        <h5><?php echo $text_information; ?></h5>
-        <ul class="list-unstyled">
-          <?php foreach ($informations as $information) { ?>
-          <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
-          <?php } ?>
-        </ul>
+      
+      <div class="col-sm-10 head-item-box">
+        <div class="row">
+          <div class="top-phones-box">
+            <ul class="top-phones-inner-box">
+              <li><a href='tel:<?php echo $telephone; ?>'><i class="material-icons">phone</i><span><?php echo $telephone; ?></span></a></li>
+              <li><a href='tel:<?php echo $telephone2; ?>'><i class="material-icons">phone</i><span><?php echo $telephone2; ?></span></a></li>
+              <li><a href='tel:<?php echo $telephone3; ?>'><i class="material-icons">phone</i><span><?php echo $telephone3; ?></span></a></li>
+              
+              <li><a href='mailto:<?php echo $mail; ?>'><i class="material-icons">local_post_office</i><span><?php echo $mail; ?></span></a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <?php } ?>
-      <div class="col-sm-3">
-        <h5><?php echo $text_service; ?></h5>
-        <ul class="list-unstyled">
-          <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
-          <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-          <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5><?php echo $text_extra; ?></h5>
-        <ul class="list-unstyled">
-          <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
-          <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
-          <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
-          <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5><?php echo $text_account; ?></h5>
-        <ul class="list-unstyled">
-          <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-          <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-          <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
-          <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
-        </ul>
+      <div class="col-sm-2 head-item-box">
+        <ul class="social-box">
+          <li class="social-item"><a href='<?php echo $link_vk; ?>'><i class="fa fa-vk" aria-hidden="true"></i></a></li>
+          <li class="social-item"><a href='<?php echo $link_fb; ?>'><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          <li class="social-item"><a href='<?php echo $link_instagram; ?>'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        </ul>  
       </div>
     </div>
     <hr>
-    <p><?php echo $powered; ?></p>
+    <p class='copy-right'>Создание и поддержка сайтов: <a href='http://studio-luck.ru' target='_blank'>Studio-Luck</a></p>
   </div>
 </footer>
+<!--modal-more-info-->
+<div id="myModal-more-info" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><i class="material-icons">close</i></button>
+        <div class="in-modal-box" id='quickview-modal-wrapp'>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!--
-OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
-Please donate via PayPal to donate@opencart.com
-//-->
+<!--modal-quick-->
+<div id="quick-buy" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><i class="material-icons">close</i></button>
+        <h3 class='modal-title'>Заполните форму</h3>
+        <form class="modal-forms" id="quick-buy-form">
+          <div class="input-field">
+            <input type='text' name='name' placeholder='Ваше имя'>
+            <input type='hidden' name='product_id' value='' />
+          </div>
+          <div class="input-field">
+            <input type='tel' name='phone' class='phone-input' placeholder='Ваш телефон'>
+          </div>
+          <div class="input-field">
+            <input type='email' name='email' placeholder='Ваш e-mail'>
+          </div>
+          <div class="input-field">
+            <button type='submit' id='quick-buy-form-submit'>Заказать</button>
+          </div>
+        </form>
+        <h3 class='thanks-text'>Спасибо за заказ, наш менеджер свяжеться с Вами в ближайшее время</h3>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
+<!--modal-quick-->
+<div id="callback" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><i class="material-icons">close</i></button>
+        <h3 class='modal-title'>Заполните форму</h3>
+        <form class="modal-forms" id="callback-form">
+          <div class="input-field">
+            <input type='text' name='name' placeholder='Ваше имя'>
+          </div>
+          <div class="input-field">
+            <input type='tel' name='phone' class='phone-input' placeholder='Ваш телефон'>
+          </div>
+          <div class="input-field">
+            <input type='email' name='email' placeholder='Ваш e-mail'>
+          </div>
+          <div class="input-field">
+            <button type='submit' id='callback-form-submit'>Заказать</button>
+          </div>
+        </form>
+        <h3 class='thanks-text'>Спасибо за заказ, наш менеджер свяжеться с Вами в ближайшее время</h3>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body></html>

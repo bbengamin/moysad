@@ -144,6 +144,51 @@
                     <?php } ?>
                   </div>
                 </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-telephone"><?php echo $entry_telephone; ?> 2</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_telephone2" value="<?php echo $config_telephone2; ?>" placeholder="<?php echo $entry_telephone; ?>" id="input-telephone2" class="form-control" />
+                    <?php if ($error_telephone) { ?>
+                    <div class="text-danger"><?php echo $error_telephone; ?> 2</div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-telephone"><?php echo $entry_telephone; ?> 3</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_telephone3" value="<?php echo $config_telephone3; ?>" placeholder="<?php echo $entry_telephone; ?>" id="input-telephone3" class="form-control" />
+                    <?php if ($error_telephone) { ?>
+                    <div class="text-danger"><?php echo $error_telephone; ?> 2</div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group required"> <!-- -->
+                  <label class="col-sm-2 control-label" for="input-vk"><?php echo $entry_vk; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_vk" value="<?php echo $config_vk; ?>" placeholder="<?php echo $entry_vk; ?>" id="input-vk" class="form-control" />
+                    <?php if ($error_vk) { ?>
+                    <div class="text-danger"><?php echo $error_vk; ?> 2</div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-fb"><?php echo $entry_fb; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_fb" value="<?php echo $config_fb; ?>" placeholder="<?php echo $entry_fb; ?>" id="input-fb" class="form-control" />
+                    <?php if ($error_fb) { ?>
+                    <div class="text-danger"><?php echo $error_fb; ?> 2</div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_instagram" value="<?php echo $config_instagram; ?>" placeholder="<?php echo $entry_instagram; ?>" id="input-instagram" class="form-control" />
+                    <?php if ($error_instagram) { ?>
+                    <div class="text-danger"><?php echo $error_instagram; ?> 2</div>
+                    <?php } ?>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-fax"><?php echo $entry_fax; ?></label>
                   <div class="col-sm-10">

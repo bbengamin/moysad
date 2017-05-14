@@ -44,6 +44,31 @@ class ControllerCommonFooter extends Controller {
 		$data['order'] = $this->url->link('account/order', '', 'SSL');
 		$data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
+		$data['telephone'] = $this->config->get('config_telephone');
+		$data['telephone2'] = $this->config->get('config_telephone2');
+		$data['telephone3'] = $this->config->get('config_telephone3');
+		$data['link_vk'] = $this->config->get('config_vk');
+		$data['link_fb'] = $this->config->get('config_fb');
+		$data['link_instagram'] = $this->config->get('config_instagram');
+		$data['mail'] = "moysadkh@bk.ru"; # Replace for config_value 
+		
+
+		// TODO: refactor. Simple checks for links is are correct
+		if (empty($data['link_vk'])) {
+			$data['link_vk'] = '#';
+		} elseif (substr($data['link_vk'], 0, 2) === "vk") {
+			$data['link_vk'] = "https://" . $data['link_vk'];
+		}
+		if (empty($data['link_fb'])) {
+			$data['link_fb'] = '#';
+		} elseif(substr($data['link_fb'], 0, 8) === "facebook") {
+			$data['link_fb'] = "https://" . $data['link_fb'];
+		} 
+		if (empty($data['link_instagram'])) {
+			$data['link_instagram'] = '#';
+		} elseif(substr($data['link_instagram'], 0, 9) === "instagram") {
+			$data['link_instagram'] = "https://" . $data['link_instagram'];
+		} 
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 

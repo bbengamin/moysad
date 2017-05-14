@@ -22,11 +22,19 @@
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
-<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="/catalog/view/theme/default/stylesheet/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
+<script src="catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/jquery/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen">
+<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+<script src="/catalog/view/javascript/jquery.fancybox.min.js" type="text/javascript"></script>
+<script src="/catalog/view/javascript/jquery.maskedinput.min.js" type="text/javascript"></script>
+
 <script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/mobile.js" type="text/javascript"></script>
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
@@ -38,81 +46,94 @@
 <?php } ?>
 </head>
 <body class="<?php echo $class; ?>">
-<nav id="top">
-  <div class="container">
-    <?php echo $currency; ?>
-    <?php echo $language; ?>
-    <div id="top-links" class="nav pull-right">
-      <ul class="list-inline">
-        <li><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></li>
-        <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <?php if ($logged) { ?>
-            <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-            <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-            <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-            <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-            <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
-            <?php } else { ?>
-            <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
-            <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
-            <?php } ?>
-          </ul>
-        </li>
-        <li><a href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_wishlist; ?></span></a></li>
-        <li><a href="<?php echo $shopping_cart; ?>" title="<?php echo $text_shopping_cart; ?>"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_shopping_cart; ?></span></a></li>
-        <li><a href="<?php echo $checkout; ?>" title="<?php echo $text_checkout; ?>"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_checkout; ?></span></a></li>
-      </ul>
-    </div>
+<!--mobile start-->
+  <div id="mobile-overlay" onclick="closeNavcategory();closeNavsettings()"></div>
+  <div id="category-mob-list" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn-mob" onclick="closeNavcategory()"><i class="material-icons">close</i></a>
   </div>
-</nav>
-<header>
+  
+  <div id="top-links-mob-box" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn-mob" onclick="closeNavsettings()"><i class="material-icons">close</i></a>
+  </div>
+  
+  <!--mobile end-->
+<header class='desctop-only-header'>
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-2 head-item-box">
         <div id="logo">
           <?php if ($logo) { ?>
-          <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
+          <a href="/"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
           <?php } else { ?>
-          <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+          <h1><a href="/"><?php echo $name; ?></a></h1>
           <?php } ?>
         </div>
       </div>
-      <div class="col-sm-5"><?php echo $search; ?>
+      <div class="col-sm-7 head-item-box">
+        <div class="top-menu-box">
+          <ul class="top-menu-inner-box">
+            <li><a href='/' onclick="closeNavcategory();closeNavsettings()">Главная</a></li>
+            <li><a href='/index.php?route=information/information&information_id=4' onclick="closeNavcategory();closeNavsettings()">О нас</a></li>
+            <li><a href='/gallery' onclick="closeNavcategory();closeNavsettings()">Галерея</a></li>
+            <li><a href='/index.php?route=information/contact' onclick="closeNavcategory();closeNavsettings()">Контакты</a></li>
+            <li><a href='/index.php?route=information/information&information_id=7' onclick="closeNavcategory();closeNavsettings()">Прайс</a></li>
+            <?php if ($categories) { ?>
+              <?php foreach ($categories as $category) { ?>
+                <?php if ($category['children']) { ?>
+                  <li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $category['name']; ?><i class="material-icons">keyboard_arrow_down</i></a>
+                    <div class="dropdown-menu">
+                      <div class="dropdown-inner">
+                        <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
+                        <ul class="list-unstyled">
+                          <?php foreach ($children as $child) { ?>
+                          <li><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></a></li>
+                          <?php } ?>
+                        </ul>
+                        <?php } ?>
+                      </div>
+                    </div>
+                  </li>
+                  <?php } else { ?>
+                  <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+                <?php } ?>
+              <?php } ?>
+            <?php } ?>
+          </ul>
+        </div>
       </div>
-      <div class="col-sm-3"><?php echo $cart; ?></div>
+      <div class="col-sm-3 head-item-box">
+        <div class="top-phones-box">
+          <ul class="top-phones-inner-box">
+            <li><a href='tel:<?php echo $telephone; ?>' onclick="closeNavcategory();closeNavsettings()"><i class="material-icons">phone</i><span><?php echo $telephone; ?></span></a></li>
+            <li><a href='tel:<?php echo $telephone2; ?>' onclick="closeNavcategory();closeNavsettings()"><i class="material-icons">phone</i><span><?php echo $telephone2; ?></span></a></li>
+            <li><a href='tel:<?php echo $telephone3; ?>' onclick="closeNavcategory();closeNavsettings()"><i class="material-icons">phone</i><span><?php echo $telephone3; ?></span></a></li>
+            <li><a href='#' data-toggle="modal" data-target="#callback" class='only-mobile-btns' onclick="closeNavcategory();closeNavsettings()"><i class="material-icons">phone</i><span>Заказать звонок</span></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </header>
-<?php if ($categories) { ?>
-<div class="container">
-  <nav id="menu" class="navbar">
-    <div class="navbar-header"><span id="category" class="visible-xs"><?php echo $text_category; ?></span>
-      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-    </div>
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
-        <?php foreach ($categories as $category) { ?>
-        <?php if ($category['children']) { ?>
-        <li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $category['name']; ?></a>
-          <div class="dropdown-menu">
-            <div class="dropdown-inner">
-              <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
-              <ul class="list-unstyled">
-                <?php foreach ($children as $child) { ?>
-                <li><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></a></li>
-                <?php } ?>
-              </ul>
-              <?php } ?>
-            </div>
-            <a href="<?php echo $category['href']; ?>" class="see-all"><?php echo $text_all; ?> <?php echo $category['name']; ?></a> </div>
-        </li>
+<header class="mobile-header">
+    <div class="header-mobile-inner">
+      <div class="header-mobile-item mobile-item-category-list">
+        <span class="mob-menu-trigger mob-category-trigger" onclick="openNavcategory()">
+          <i class="material-icons">menu</i>
+        </span>
+      </div>
+      
+      <div class="header-mobile-item mobile-item-logo">
+        <?php if ($logo) { ?>
+          <a href="/"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
         <?php } else { ?>
-        <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+          <h1><a href="/"><?php echo $name; ?></a></h1>
         <?php } ?>
-        <?php } ?>
-      </ul>
+      </div>
+      
+      <div class="header-mobile-item mobile-item-options">
+        <span class="mob-menu-trigger mob-settings-trigger" onclick="openNavsettings()">
+          <i class="material-icons">settings_phone</i>
+         </span>
+      </div>
     </div>
-  </nav>
-</div>
-<?php } ?>
+  </header>
